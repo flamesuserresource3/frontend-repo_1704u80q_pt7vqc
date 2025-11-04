@@ -1,75 +1,100 @@
 import React from 'react';
-import Spline from '@splinetool/react-spline';
-import { Rocket } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Rocket, ArrowRight, Shield } from 'lucide-react';
+import Spline from '@splinetool/react-spline';
 
 const Hero = () => {
   return (
-    <section id="home" className="relative w-full min-h-[92vh] flex items-center overflow-hidden bg-emerald-950">
-      {/* Spline 3D scene */}
-      <div className="absolute inset-0">
-        <Spline
-          scene="https://prod.spline.design/VJLoxp84lCdVfdZu/scene.splinecode"
-          style={{ width: '100%', height: '100%' }}
-        />
-      </div>
+    <section id="home" className="relative min-h-[88vh] w-full overflow-hidden bg-white">
+      {/* Decorative top border accent */}
+      <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-500" />
 
-      {/* Aurora and vignette overlays (do not block interaction) */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/60 via-emerald-950/40 to-emerald-950/80" />
-        <div className="absolute -inset-x-20 -top-20 h-[50vh] blur-3xl opacity-50" aria-hidden>
-          <div className="w-full h-full bg-[conic-gradient(from_120deg,rgba(16,185,129,0.25),transparent,rgba(20,184,166,0.25),transparent)]" />
+      <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-6 py-14 md:grid-cols-2 md:py-20">
+        {/* Copy area */}
+        <div className="z-10 flex flex-col justify-center">
+          <motion.span
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex w-fit items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50/70 px-3 py-1 text-xs font-medium text-emerald-700"
+            aria-label="Highlight: AI + SEO"
+          >
+            <Shield className="h-3.5 w-3.5" /> AI • SEO • Automazioni
+          </motion.span>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.6 }}
+            className="mt-4 text-4xl font-semibold leading-tight text-gray-900 md:text-5xl lg:text-6xl"
+          >
+            Daniele Cerutti
+            <span className="block bg-gradient-to-r from-emerald-500 to-teal-500 bg-clip-text text-transparent">Consulente & Formatore</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="mt-5 max-w-xl text-base leading-7 text-gray-600 md:text-lg"
+          >
+            Strategie di crescita misurabili con AI generativa, SEO avanzata e strumenti digitali. Progettiamo funnel, automazioni e contenuti che scalano, mantenendo la massima leggibilità e un tocco di tecnologia.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="mt-8 flex flex-wrap items-center gap-3"
+          >
+            <a
+              href="https://calendly.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="group inline-flex items-center gap-2 rounded-xl bg-gray-900 px-5 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            >
+              <Rocket className="h-4 w-4 transition group-hover:translate-x-0.5" />
+              Prenota una call
+              <ArrowRight className="h-4 w-4 -mr-1 transition group-hover:translate-x-0.5" />
+            </a>
+            <a
+              href="#resources"
+              className="inline-flex items-center gap-2 rounded-xl border border-emerald-200 bg-white px-5 py-3 text-sm font-medium text-emerald-700 shadow-sm transition hover:border-emerald-300 hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            >
+              Scarica media kit
+            </a>
+          </motion.div>
+
+          <motion.ul
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.45, duration: 0.6 }}
+            className="mt-6 grid max-w-lg grid-cols-2 gap-3 text-sm text-gray-600"
+          >
+            <li className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> +180% traffico organico medio</li>
+            <li className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> Automazioni AI su misura</li>
+            <li className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> Funnel data-driven</li>
+            <li className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> Formazione operativa</li>
+          </motion.ul>
         </div>
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-emerald-950 to-transparent" />
-      </div>
 
-      {/* Glowing beams */}
-      <motion.div
-        aria-hidden
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.2 }}
-        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" 
-      >
-        <div className="size-[60vmax] rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(52,211,153,0.10),transparent_60%)]" />
-      </motion.div>
+        {/* Visual area */}
+        <div className="relative aspect-[4/3] w-full md:aspect-auto md:min-h-[520px]">
+          <div className="absolute inset-0 rounded-2xl border border-emerald-100/60 bg-emerald-50/40" />
+          <div className="absolute inset-0 overflow-hidden rounded-2xl">
+            <Spline
+              scene="https://prod.spline.design/0HFZpC1JX9Q9u7-7/scene.splinecode"
+              style={{ width: '100%', height: '100%' }}
+            />
 
-      <div className="relative z-[1] max-w-6xl mx-auto px-6 py-20 md:py-28">
-        <motion.div
-          initial={{ opacity: 0, y: 22 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="max-w-3xl"
-        >
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-900/40 px-3 py-1 text-emerald-200 shadow-sm backdrop-blur">
-            <span className="inline-flex size-2 rounded-full bg-emerald-400/90 animate-pulse" />
-            <span className="text-xs font-medium tracking-wide">AI + SEO ad alte prestazioni, senza complessità inutile</span>
+            {/* Gradients and beams - pointer events none to keep Spline interactive */}
+            <div className="pointer-events-none absolute inset-0">
+              <div className="absolute -left-20 -top-20 h-60 w-60 rounded-full bg-emerald-400/20 blur-3xl" />
+              <div className="absolute bottom-[-40px] right-[-40px] h-72 w-72 rounded-full bg-teal-400/20 blur-3xl" />
+              <div className="absolute inset-0 bg-[radial-gradient(1200px_400px_at_80%_20%,rgba(16,185,129,0.12),transparent)]" />
+            </div>
           </div>
-
-          <h1 className="mt-5 text-4xl md:text-6xl font-extrabold leading-[1.05] text-emerald-50">
-            Fai un salto di livello
-            <span className="block bg-gradient-to-r from-emerald-300 via-teal-200 to-emerald-400 bg-clip-text text-transparent">con AI generativa e SEO pragmatico</span>
-          </h1>
-          <p className="mt-5 text-emerald-100/85 md:text-lg max-w-2xl">
-            Metodo, strumenti e formazione operativa per trasformare obiettivi in risultati concreti. Approccio pulito, replicabile, misurabile.
-          </p>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="#servizi"
-              className="group inline-flex items-center gap-2 rounded-xl bg-emerald-400 text-emerald-950 px-5 py-3 text-sm md:text-base font-semibold shadow-lg shadow-emerald-500/25 transition hover:shadow-emerald-400/40 hover:bg-emerald-300"
-            >
-              <Rocket className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
-              <span>Scopri i servizi</span>
-            </a>
-            <a
-              href="#risorse"
-              className="inline-flex items-center justify-center rounded-xl border border-emerald-400/40 bg-emerald-900/50 text-emerald-100 px-5 py-3 text-sm md:text-base transition hover:bg-emerald-900/70 backdrop-blur"
-            >
-              Risorse pratiche
-            </a>
-          </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

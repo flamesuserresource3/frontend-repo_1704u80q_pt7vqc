@@ -1,81 +1,69 @@
 import React from 'react';
-import { Rocket, Users, Search } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Rocket, Search, Workflow, LineChart } from 'lucide-react';
 
-const ServiceCard = ({ icon: Icon, title, description, points, delay = 0 }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 16 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, amount: 0.2 }}
-    transition={{ duration: 0.55, delay }}
-    className="relative overflow-hidden rounded-2xl border border-emerald-400/20 p-6 bg-emerald-900/40 backdrop-blur shadow-[0_0_0_1px_rgba(16,185,129,0.15)] hover:shadow-[0_0_0_1px_rgba(16,185,129,0.35)] transition"
-  >
-    <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-emerald-400/10 blur-2xl" aria-hidden />
-    <div className="flex items-center gap-3">
-      <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-400 text-emerald-950 flex items-center justify-center shadow-lg shadow-emerald-500/30">
-        <Icon className="h-5 w-5" />
-      </div>
-      <h3 className="text-lg font-semibold text-emerald-50">{title}</h3>
-    </div>
-    <p className="mt-3 text-emerald-100/85">{description}</p>
-    <ul className="mt-4 space-y-2 text-emerald-100/80">
-      {points.map((p, i) => (
-        <li key={i}>• {p}</li>
-      ))}
-    </ul>
-  </motion.div>
-);
+const services = [
+  {
+    icon: <Search className="h-5 w-5 text-emerald-600" />,
+    title: 'SEO avanzata',
+    desc: 'Audit tecnico, content strategy e ottimizzazioni on-page/off-page per scalare in SERP.',
+  },
+  {
+    icon: <Workflow className="h-5 w-5 text-emerald-600" />,
+    title: 'Automazioni AI',
+    desc: 'Pipeline personalizzate per generazione contenuti, analisi, e workflow no-code/low-code.',
+  },
+  {
+    icon: <LineChart className="h-5 w-5 text-emerald-600" />,
+    title: 'Growth & Funnel',
+    desc: 'Progettazione funnel, CRO e tracciamenti per crescita sostenibile e misurabile.',
+  },
+  {
+    icon: <Rocket className="h-5 w-5 text-emerald-600" />,
+    title: 'Formazione',
+    desc: 'Workshop e training operativi su AI generativa, SEO e tool digitali per i team.',
+  },
+];
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 14 },
+  show: (i) => ({ opacity: 1, y: 0, transition: { delay: 0.08 * i, duration: 0.5 } }),
+};
 
 const Services = () => {
   return (
-    <section id="servizi" className="relative py-24 bg-emerald-950">
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(70%_60%_at_50%_0%,rgba(16,185,129,0.10),transparent_60%)]" />
-      <div className="relative max-w-6xl mx-auto px-6">
-        <div className="flex items-end justify-between gap-6 flex-wrap">
-          <div>
-            <h2 className="text-2xl md:text-3xl font-semibold text-emerald-50">Servizi</h2>
-            <p className="mt-3 text-emerald-100/85 max-w-2xl">
-              Interventi mirati per creare valore applicabile in poco tempo. Ogni progetto include materiali chiari e passaggi replicabili dal team.
-            </p>
-          </div>
-          <a href="#contatti" className="inline-flex items-center justify-center rounded-xl bg-emerald-400 text-emerald-950 px-5 py-3 text-sm md:text-base font-semibold shadow-lg shadow-emerald-500/25 transition hover:bg-emerald-300 hover:shadow-emerald-400/40">Parliamone</a>
+    <section id="servizi" className="relative bg-white">
+      <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl font-semibold tracking-tight text-gray-900 md:text-4xl">Servizi</h2>
+          <p className="mt-3 text-gray-600">Soluzioni concrete con tecnologia di ultima generazione e massima attenzione alla leggibilità e ai risultati.</p>
         </div>
 
-        <div className="mt-10 grid md:grid-cols-3 gap-6">
-          <ServiceCard
-            delay={0}
-            icon={Users}
-            title="Formazione operativa"
-            description="Workshop e percorsi su AI generativa, SEO e automazioni leggere."
-            points={[
-              'Contenuti su misura con esempi del tuo settore',
-              'Esercitazioni guidate e toolkit pronti all’uso',
-              'Follow-up per consolidare le competenze',
-            ]}
-          />
-          <ServiceCard
-            delay={0.05}
-            icon={Search}
-            title="Consulenza SEO pragmatica"
-            description="Piani chiari per aumentare traffico e lead senza sovrastrutturare."
-            points={[
-              'Ricerca opportunità e priorità concrete',
-              'Calendario contenuti e ottimizzazioni tecniche essenziali',
-              'Metriche e check ricorrenti',
-            ]}
-          />
-          <ServiceCard
-            delay={0.1}
-            icon={Rocket}
-            title="Strategie con AI generativa"
-            description="Processi e prompt design per marketing, contenuti e customer care."
-            points={[
-              'Mappatura dei casi d’uso ad alto impatto',
-              'Standard operativi e librerie di prompt',
-              'Integrazione con gli strumenti già in uso',
-            ]}
-          />
-        </div>
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
+        >
+          {services.map((s, i) => (
+            <motion.div
+              key={s.title}
+              variants={cardVariants}
+              custom={i}
+              className="group relative overflow-hidden rounded-2xl border border-emerald-100 bg-white p-5 shadow-sm transition hover:shadow-lg"
+            >
+              <div className="absolute inset-0 pointer-events-none opacity-0 transition group-hover:opacity-100" aria-hidden>
+                <div className="absolute right-[-40px] top-[-40px] h-40 w-40 rounded-full bg-emerald-200/30 blur-2xl" />
+                <div className="absolute bottom-[-50px] left-[-30px] h-48 w-48 rounded-full bg-teal-200/30 blur-2xl" />
+              </div>
+              <div className="relative">
+                <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 ring-1 ring-emerald-100">{s.icon}</div>
+                <h3 className="mt-4 text-lg font-semibold text-gray-900">{s.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-gray-600">{s.desc}</p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
