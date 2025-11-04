@@ -8,10 +8,11 @@ const ResourceItem = ({ icon: Icon, title, description, action, delay = 0 }) => 
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, amount: 0.2 }}
     transition={{ duration: 0.45, delay }}
-    className="rounded-xl border border-emerald-400/20 p-6 bg-emerald-900/40 backdrop-blur"
+    className="relative overflow-hidden rounded-2xl border border-emerald-400/20 p-6 bg-emerald-900/40 backdrop-blur"
   >
+    <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-emerald-400/10 blur-2xl" aria-hidden />
     <div className="flex items-center gap-3">
-      <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-emerald-400 to-teal-400 text-emerald-950 flex items-center justify-center">
+      <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-400 text-emerald-950 flex items-center justify-center">
         <Icon className="h-5 w-5" />
       </div>
       <h3 className="text-lg font-semibold text-emerald-50">{title}</h3>
@@ -23,8 +24,9 @@ const ResourceItem = ({ icon: Icon, title, description, action, delay = 0 }) => 
 
 const Resources = () => {
   return (
-    <section id="risorse" className="py-20 bg-emerald-950">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="risorse" className="relative py-24 bg-emerald-950">
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(65%_60%_at_50%_10%,rgba(16,185,129,0.10),transparent_60%)]" />
+      <div className="relative max-w-6xl mx-auto px-6">
         <h2 className="text-2xl md:text-3xl font-semibold text-emerald-50">Risorse</h2>
         <p className="mt-3 text-emerald-100/85 max-w-2xl">
           Materiali brevi e applicabili per iniziare subito: guide sintetiche, checklist operative e esempi di prompt. Nessun gergo, solo passaggi chiari.

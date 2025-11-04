@@ -7,8 +7,13 @@ import { Mail } from 'lucide-react';
 
 function App() {
   return (
-    <div className="font-inter bg-emerald-950 text-emerald-50">
-      {/* Top nav - glass with subtle border */}
+    <div className="font-inter bg-emerald-950 text-emerald-50 min-h-screen relative">
+      {/* Global decorative grid + glow */}
+      <div className="pointer-events-none absolute inset-0 opacity-[0.08]" aria-hidden>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:40px_40px]" />
+      </div>
+
+      {/* Top nav */}
       <header className="sticky top-0 z-20 backdrop-blur bg-emerald-950/60 border-b border-emerald-400/10">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <a href="#home" className="font-semibold tracking-tight text-emerald-100 hover:text-emerald-50 transition">Daniele Cerutti</a>
@@ -16,7 +21,9 @@ function App() {
             <a href="#chi-sono" className="hover:text-emerald-50">Chi sono</a>
             <a href="#servizi" className="hover:text-emerald-50">Servizi</a>
             <a href="#risorse" className="hover:text-emerald-50">Risorse</a>
-            <a href="#contatti" className="hover:text-emerald-50">Contatti</a>
+            <a href="#contatti" className="inline-flex items-center gap-2 rounded-lg border border-emerald-400/30 px-3 py-1 hover:bg-emerald-900/40 transition">
+              <Mail className="h-4 w-4" /> Contatti
+            </a>
           </nav>
         </div>
       </header>
@@ -28,8 +35,12 @@ function App() {
         <Resources />
 
         {/* Contatti */}
-        <section id="contatti" className="py-20 bg-emerald-950">
-          <div className="max-w-6xl mx-auto px-6">
+        <section id="contatti" className="relative py-24">
+          {/* spotlight background */}
+          <div className="pointer-events-none absolute inset-0" aria-hidden>
+            <div className="absolute left-1/2 top-0 -translate-x-1/2 h-72 w-[80%] rounded-b-[50%] blur-3xl opacity-30 bg-gradient-to-b from-emerald-500/20 to-transparent" />
+          </div>
+          <div className="relative max-w-6xl mx-auto px-6">
             <div className="grid md:grid-cols-2 gap-10 items-start">
               <div>
                 <h2 className="text-2xl md:text-3xl font-semibold">Contatti</h2>
@@ -43,19 +54,19 @@ function App() {
                 <div className="mt-6 flex flex-wrap gap-3">
                   <a
                     href="mailto:daniele.cerutti@example.com?subject=Richiesta%20informazioni"
-                    className="inline-flex items-center gap-2 rounded-lg bg-emerald-400 text-emerald-950 px-5 py-3 text-sm md:text-base font-semibold hover:bg-emerald-300 transition shadow-lg shadow-emerald-500/20"
+                    className="group inline-flex items-center gap-2 rounded-xl bg-emerald-400 text-emerald-950 px-5 py-3 text-sm md:text-base font-semibold hover:bg-emerald-300 transition shadow-lg shadow-emerald-500/25"
                   >
-                    <Mail className="h-4 w-4" /> Scrivimi via email
+                    <Mail className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" /> Scrivimi via email
                   </a>
                   <a
                     href="#"
-                    className="inline-flex items-center justify-center rounded-lg border border-emerald-400/40 bg-emerald-900/40 text-emerald-100 px-5 py-3 text-sm md:text-base hover:bg-emerald-900/60 transition"
+                    className="inline-flex items-center justify-center rounded-xl border border-emerald-400/40 bg-emerald-900/50 text-emerald-100 px-5 py-3 text-sm md:text-base hover:bg-emerald-900/70 transition"
                   >
                     Prenota una call
                   </a>
                 </div>
               </div>
-              <div className="rounded-xl border border-emerald-400/20 bg-emerald-900/40 p-6 backdrop-blur">
+              <div className="rounded-2xl border border-emerald-400/20 bg-emerald-900/40 p-6 backdrop-blur shadow-[0_0_0_1px_rgba(16,185,129,0.15)]">
                 <h3 className="text-lg font-medium">Richiedi materiali di esempio</h3>
                 <p className="mt-2 text-sm text-emerald-100/80">Riceverai un pacchetto con una guida, una checklist e un esempio di prompt.</p>
                 <form className="mt-4 grid gap-3" onSubmit={(e) => e.preventDefault()}>
@@ -76,7 +87,7 @@ function App() {
                   />
                   <button
                     type="submit"
-                    className="inline-flex items-center justify-center rounded-lg bg-emerald-400 text-emerald-950 px-5 py-3 text-sm md:text-base font-semibold hover:bg-emerald-300 transition shadow-lg shadow-emerald-500/20"
+                    className="inline-flex items-center justify-center rounded-xl bg-emerald-400 text-emerald-950 px-5 py-3 text-sm md:text-base font-semibold hover:bg-emerald-300 transition shadow-lg shadow-emerald-500/25"
                     aria-label="Invia (demo)"
                   >
                     Invia richiesta (demo)

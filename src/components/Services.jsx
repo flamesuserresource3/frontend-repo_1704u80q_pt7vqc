@@ -7,11 +7,12 @@ const ServiceCard = ({ icon: Icon, title, description, points, delay = 0 }) => (
     initial={{ opacity: 0, y: 16 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, amount: 0.2 }}
-    transition={{ duration: 0.5, delay }}
-    className="rounded-xl border border-emerald-400/20 p-6 bg-emerald-900/40 backdrop-blur shadow-[0_0_0_1px_rgba(16,185,129,0.15)] hover:shadow-[0_0_0_1px_rgba(16,185,129,0.35)] transition"
+    transition={{ duration: 0.55, delay }}
+    className="relative overflow-hidden rounded-2xl border border-emerald-400/20 p-6 bg-emerald-900/40 backdrop-blur shadow-[0_0_0_1px_rgba(16,185,129,0.15)] hover:shadow-[0_0_0_1px_rgba(16,185,129,0.35)] transition"
   >
+    <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-emerald-400/10 blur-2xl" aria-hidden />
     <div className="flex items-center gap-3">
-      <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-emerald-400 to-teal-400 text-emerald-950 flex items-center justify-center shadow-lg shadow-emerald-500/30">
+      <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-400 text-emerald-950 flex items-center justify-center shadow-lg shadow-emerald-500/30">
         <Icon className="h-5 w-5" />
       </div>
       <h3 className="text-lg font-semibold text-emerald-50">{title}</h3>
@@ -27,13 +28,18 @@ const ServiceCard = ({ icon: Icon, title, description, points, delay = 0 }) => (
 
 const Services = () => {
   return (
-    <section id="servizi" className="relative py-20 bg-emerald-950">
+    <section id="servizi" className="relative py-24 bg-emerald-950">
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(70%_60%_at_50%_0%,rgba(16,185,129,0.10),transparent_60%)]" />
       <div className="relative max-w-6xl mx-auto px-6">
-        <h2 className="text-2xl md:text-3xl font-semibold text-emerald-50">Servizi</h2>
-        <p className="mt-3 text-emerald-100/85 max-w-2xl">
-          Interventi mirati, pensati per creare valore applicabile in poco tempo. Ogni progetto include materiali chiari e passaggi replicabili dal team.
-        </p>
+        <div className="flex items-end justify-between gap-6 flex-wrap">
+          <div>
+            <h2 className="text-2xl md:text-3xl font-semibold text-emerald-50">Servizi</h2>
+            <p className="mt-3 text-emerald-100/85 max-w-2xl">
+              Interventi mirati per creare valore applicabile in poco tempo. Ogni progetto include materiali chiari e passaggi replicabili dal team.
+            </p>
+          </div>
+          <a href="#contatti" className="inline-flex items-center justify-center rounded-xl bg-emerald-400 text-emerald-950 px-5 py-3 text-sm md:text-base font-semibold shadow-lg shadow-emerald-500/25 transition hover:bg-emerald-300 hover:shadow-emerald-400/40">Parliamone</a>
+        </div>
 
         <div className="mt-10 grid md:grid-cols-3 gap-6">
           <ServiceCard
@@ -69,15 +75,6 @@ const Services = () => {
               'Integrazione con gli strumenti già in uso',
             ]}
           />
-        </div>
-
-        <div className="mt-10 flex flex-wrap gap-3">
-          <a href="#contatti" className="inline-flex items-center justify-center rounded-lg bg-emerald-400 text-emerald-950 px-5 py-3 text-sm md:text-base font-semibold hover:bg-emerald-300 transition shadow-lg shadow-emerald-500/20">
-            Richiedi una call conoscitiva
-          </a>
-          <a href="#risorse" className="inline-flex items-center justify-center rounded-lg border border-emerald-400/40 bg-emerald-900/40 text-emerald-100 px-5 py-3 text-sm md:text-base hover:bg-emerald-900/60 transition">
-            Guarda esempi e template
-          </a>
         </div>
       </div>
     </section>
